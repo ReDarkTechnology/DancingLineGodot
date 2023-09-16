@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbe13n4fywoyt"]
+[gd_scene load_steps=7 format=3 uid="uid://bbe13n4fywoyt"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_gaxm7"]
 [ext_resource type="Material" uid="uid://d0aqn48xoannh" path="res://Materials/PlayerMaterial.tres" id="2_s22bs"]
 [ext_resource type="PackedScene" uid="uid://c2lhkegb3mhh5" path="res://Objects/Tail.tscn" id="2_wsslm"]
+[ext_resource type="PackedScene" uid="uid://byblfqacpqpff" path="res://Objects/DiePiece.tscn" id="3_23wds"]
 
 [sub_resource type="BoxShape3D" id="1"]
 
@@ -15,6 +16,7 @@ floor_stop_on_slope = false
 floor_max_angle = 0.0
 script = ExtResource("1_gaxm7")
 tail = ExtResource("2_wsslm")
+diePiece = ExtResource("3_23wds")
 color = Color(0.976471, 0.992157, 0, 1)
 
 [node name="ObstacleFinder" type="Area3D" parent="."]
