@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgpec5ngrqqoq"]
+
+[ext_resource type="PackedScene" uid="uid://hgoqrq5hbme0" path="res://Objects/TriggerBase.tscn" id="1_a0kr3"]
+[ext_resource type="Script" path="res://Scripts/Triggers/CameraTrigger.gd" id="2_yu1kq"]
+
+[node name="CameraTrigger" instance=ExtResource("1_a0kr3")]
+script = ExtResource("2_yu1kq")
+rotationAxis = Vector3(45, 45, 0)
+distance = 20.0

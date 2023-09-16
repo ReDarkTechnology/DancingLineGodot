@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbe13n4fywoyt"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_gaxm7"]
+[ext_resource type="Material" uid="uid://d0aqn48xoannh" path="res://Materials/PlayerMaterial.tres" id="2_s22bs"]
+
+[sub_resource type="BoxShape3D" id="1"]
+
+[sub_resource type="BoxMesh" id="2"]
+material = ExtResource("2_s22bs")
+
+[node name="Player" type="CharacterBody3D"]
+floor_stop_on_slope = false
+floor_max_angle = 0.0
+script = ExtResource("1_gaxm7")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+shape = SubResource("1")
+
+[node name="MeshInstance" type="MeshInstance3D" parent="."]
+mesh = SubResource("2")
+skeleton = NodePath("../..")

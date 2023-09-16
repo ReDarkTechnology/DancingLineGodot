@@ -1,0 +1,206 @@
+[gd_scene load_steps=20 format=3 uid="uid://ctv27i6hhp8w"]
+
+[ext_resource type="PackedScene" uid="uid://bbe13n4fywoyt" path="res://Objects/Player.tscn" id="1"]
+[ext_resource type="Script" path="res://Scripts/CameraPivot.gd" id="1_jab5j"]
+[ext_resource type="Environment" uid="uid://dqube5ks5iine" path="res://Environments/GameEnvironment.tres" id="2_6r4t3"]
+[ext_resource type="PackedScene" uid="uid://byblfqacpqpff" path="res://Objects/DiePiece.tscn" id="4_rst3h"]
+[ext_resource type="PackedScene" uid="uid://pgfypmjaclw8" path="res://Packages/AxeyWorks/Rock_Large_Tall_01.fbx" id="5_fghtn"]
+[ext_resource type="AudioStream" uid="uid://xfvsjccwmwts" path="res://Audio/Sakuzyo 削除  3つの物語 3 Stories  III 天の庭 Hanging Garden Album Language.mp3" id="6_qwjjt"]
+[ext_resource type="PackedScene" uid="uid://df16eo4dxsyjs" path="res://Packages/AxeyWorks/Tree_Common_01.fbx" id="7_3dybj"]
+[ext_resource type="PackedScene" uid="uid://d0bwex8cfufeq" path="res://Objects/MainGameUI.tscn" id="8_cgl60"]
+[ext_resource type="PackedScene" uid="uid://bgpec5ngrqqoq" path="res://Objects/Triggers/CameraTrigger.tscn" id="9_jp8ds"]
+[ext_resource type="PackedScene" uid="uid://bcug5sbbvr84u" path="res://Packages/AxeyWorks/Bush_Large_01.fbx" id="10_hfar4"]
+[ext_resource type="PackedScene" uid="uid://dyiuqcaftw4g4" path="res://Packages/AxeyWorks/Bush_Small_02.fbx" id="11_2hir0"]
+[ext_resource type="PackedScene" uid="uid://c64hemjdokqv4" path="res://Packages/AxeyWorks/Grass_Patch_Square_01.fbx" id="12_0gdfh"]
+[ext_resource type="PackedScene" uid="uid://crkeuh38e1aa2" path="res://Packages/AxeyWorks/Bridge_Broken_Piece_01.fbx" id="12_2iegf"]
+[ext_resource type="PackedScene" uid="uid://25oglp1u2lko" path="res://Packages/AxeyWorks/Tree_Conifer_01.fbx" id="13_g2ugn"]
+[ext_resource type="PackedScene" uid="uid://cfqfvxilk1k73" path="res://Packages/AxeyWorks/Tree_Asian_Shaped_01.fbx" id="14_y6rqn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_52v1j"]
+margin = 0.0
+size = Vector3(50, 1, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aw0mq"]
+albedo_color = Color(0.411765, 0.611765, 0.403922, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w6n1p"]
+material = SubResource("StandardMaterial3D_aw0mq")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cvn66"]
+size = Vector3(7.11469, 1.95146, 7.35377)
+
+[node name="GameScene" type="Node3D"]
+
+[node name="MainGameUI" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_cgl60")]
+player = NodePath("../Essential/Player")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(-0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, 0.5, -0.5, 0, 0, 0)
+script = ExtResource("1_jab5j")
+followSpeed = 3.0
+distance = 15.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.90735e-06, 20)
+
+[node name="Essential" type="Node" parent="."]
+
+[node name="Player" parent="Essential" node_paths=PackedStringArray("source", "camera", "tailParent") instance=ExtResource("1")]
+source = NodePath("../AudioStreamPlayer")
+camera = NodePath("../../CameraPivot")
+tailParent = NodePath("../Parent")
+diePiece = ExtResource("4_rst3h")
+speed = 12.0
+
+[node name="Parent" type="Node3D" parent="Essential"]
+
+[node name="DirectionalLight" type="DirectionalLight3D" parent="Essential"]
+transform = Transform3D(-0.994522, -0.0800735, 0.0671896, 0, 0.642788, 0.766044, -0.104528, 0.761848, -0.639266, 0, 10, 0)
+light_energy = 0.7
+light_indirect_energy = 0.0
+shadow_normal_bias = 5.0
+shadow_reverse_cull_face = true
+shadow_blur = 0.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Essential"]
+environment = ExtResource("2_6r4t3")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Essential"]
+stream = ExtResource("6_qwjjt")
+
+[node name="Grounds" type="Node" parent="."]
+
+[node name="Ground" type="StaticBody3D" parent="Grounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Grounds/Ground"]
+shape = SubResource("BoxShape3D_52v1j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Grounds/Ground"]
+transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0)
+mesh = SubResource("BoxMesh_w6n1p")
+
+[node name="Ground2" type="StaticBody3D" parent="Grounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5458, -4.99178, 35.967)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Grounds/Ground2"]
+shape = SubResource("BoxShape3D_52v1j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Grounds/Ground2"]
+transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0)
+mesh = SubResource("BoxMesh_w6n1p")
+
+[node name="Decoration" type="Node" parent="."]
+
+[node name="Rock_Large_Tall_01" parent="Decoration" instance=ExtResource("5_fghtn")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1.95623, -0.885617, 8.09978)
+
+[node name="Rock_Large_Tall_02" parent="Decoration" instance=ExtResource("5_fghtn")]
+transform = Transform3D(-0.267868, 0, -1.98198, 0, 2, 0, 1.98198, 0, -0.267868, 0.772007, -1.48925, 8.21484)
+
+[node name="Tree_Common_01" parent="Decoration" instance=ExtResource("7_3dybj")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 3.59019, -0.423037, -0.428167)
+
+[node name="Bush_Large_01" parent="Decoration" instance=ExtResource("10_hfar4")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.97255, -0.963641, 1.89965)
+
+[node name="Bush_Large_02" parent="Decoration" instance=ExtResource("10_hfar4")]
+transform = Transform3D(-21.2132, 0, 10.6066, 0, 3, 0, -21.2132, 0, -10.6066, 11.336, -0.963641, -5.10842)
+
+[node name="Bush_Large_03" parent="Decoration" instance=ExtResource("10_hfar4")]
+transform = Transform3D(14.0249, 0, 13.2599, 0, 10, 0, -26.5198, 0, 7.01247, 23.172, -1.03183, -11.9882)
+
+[node name="Bush_Large_04" parent="Decoration" instance=ExtResource("10_hfar4")]
+transform = Transform3D(-21.2132, 0, 10.6066, 0, 3, 0, -21.2132, 0, -10.6066, -9.58018, -0.963641, 21.3568)
+
+[node name="Bush_Large_05" parent="Decoration" instance=ExtResource("10_hfar4")]
+transform = Transform3D(-18.5852, 0, 11.7749, 0, 10, 0, -23.5498, 0, -9.29258, 1.56489, -1.03183, 34.2381)
+
+[node name="Bush_Small_02" parent="Decoration" instance=ExtResource("11_2hir0")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 11.5373, -1.19235, 10.9926)
+
+[node name="Bush_Small_04" parent="Decoration" instance=ExtResource("11_2hir0")]
+transform = Transform3D(0.584963, -1.92869, 2.22215, 0, 2.26564, 1.96644, -2.94242, -0.383431, 0.441772, 13.4658, -1.19235, 10.3423)
+
+[node name="Bush_Small_05" parent="Decoration" instance=ExtResource("11_2hir0")]
+transform = Transform3D(2.46889, -2.27669, 2.39723, -8.02879, 1.32638, 1.66284, -6.09764, -2.66826, -1.21885, 13.854, -1.19235, 12.5489)
+
+[node name="Bush_Small_03" parent="Decoration" instance=ExtResource("11_2hir0")]
+transform = Transform3D(0.319709, -0.932826, 2.83331, 0.104596, 2.85129, 0.926943, -2.98108, 0, 0.336384, 11.4986, -1.19235, 9.10271)
+
+[node name="Bridge_Broken_Piece_01" parent="Decoration" instance=ExtResource("12_2iegf")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 7.451, -12.5976, 4.26585)
+
+[node name="Grass_Patch_Square_01" parent="Decoration" instance=ExtResource("12_0gdfh")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.778551, -0.5, 7.31225)
+
+[node name="Grass_Patch_Square_07" parent="Decoration" instance=ExtResource("12_0gdfh")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.627389, -0.5, 13.2521)
+
+[node name="Grass_Patch_Square_08" parent="Decoration" instance=ExtResource("12_0gdfh")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.53529, -0.5, 18.078)
+
+[node name="Grass_Patch_Square_02" parent="Decoration" instance=ExtResource("12_0gdfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.22633, -0.5, 12.6347)
+
+[node name="Grass_Patch_Square_03" parent="Decoration" instance=ExtResource("12_0gdfh")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -8.46403, -0.5, 5.86804)
+
+[node name="Grass_Patch_Square_04" parent="Decoration" instance=ExtResource("12_0gdfh")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6.60728, -0.5, -0.534247)
+
+[node name="Grass_Patch_Square_05" parent="Decoration" instance=ExtResource("12_0gdfh")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -10.6775, -0.5, 2.7812)
+
+[node name="Grass_Patch_Square_06" parent="Decoration" instance=ExtResource("12_0gdfh")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -7.30839, -0.5, -0.89608)
+
+[node name="Triggers" type="Node" parent="."]
+
+[node name="CameraTrigger" parent="Triggers" instance=ExtResource("9_jp8ds")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0.494782, -0.00461483, 4.79258)
+rotationAxis = Vector3(45, 60, 0)
+curve = -3.0
+duration = 2.0
+
+[node name="CameraTrigger2" parent="Triggers" instance=ExtResource("9_jp8ds")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 9.97166, -0.00461483, 16.405)
+rotationAxis = Vector3(60, 20, 0)
+distance = 25.0
+curve = -3.0
+duration = 2.0
+
+[node name="Colliders" type="Node" parent="."]
+
+[node name="Obstacle_" type="StaticBody3D" parent="Colliders"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Obstacle_"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.94749, 0.175955, 0.364341)
+shape = SubResource("BoxShape3D_cvn66")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Colliders/Obstacle_"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.64998, 0.175954, 10.6237)
+shape = SubResource("BoxShape3D_cvn66")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Colliders/Obstacle_"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.72791, 0.175954, 7.74454)
+shape = SubResource("BoxShape3D_cvn66")
+
+[node name="Tree_Conifer_01" parent="." instance=ExtResource("13_g2ugn")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 5.45584, -0.5, 16.4816)
+
+[node name="Tree_Conifer_02" parent="." instance=ExtResource("13_g2ugn")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.455842, -2.10398, 16.4816)
+
+[node name="Tree_Conifer_03" parent="." instance=ExtResource("13_g2ugn")]
+transform = Transform3D(2.8, 0, 0, 0, 2.8, 0, 0, 0, 2.8, 0.99694, -2.87349, 12.7522)
+
+[node name="Tree_Asian_Shaped_01" parent="." instance=ExtResource("14_y6rqn")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 10.3834, -0.500001, 17.0778)
+
+[node name="Tree_Asian_Shaped_02" parent="." instance=ExtResource("14_y6rqn")]
+transform = Transform3D(1.16317, 0, -2.76533, 1.19782, 2.70396, 0.503836, 2.49244, -1.29947, 1.04839, 16.196, -1.30859, 11.6511)
+
+[connection signal="mouse_entered" from="MainGameUI" to="Essential/Player" method="_on_main_game_ui_mouse_entered"]
+[connection signal="mouse_exited" from="MainGameUI" to="Essential/Player" method="_on_main_game_ui_mouse_exited"]
+[connection signal="on_line_start" from="Essential/Player" to="MainGameUI" method="hide_ui"]

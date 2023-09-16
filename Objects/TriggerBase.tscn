@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://hgoqrq5hbme0"]
+
+[ext_resource type="Script" path="res://ScriptTemplates/Trigger.gd" id="1_882nc"]
+[ext_resource type="Material" uid="uid://bj04om8c4vnf8" path="res://Materials/TriggerMaterial.tres" id="1_n88j7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gsdtt"]
+size = Vector3(20, 1, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_blonh"]
+material = ExtResource("1_n88j7")
+
+[node name="TriggerBase" type="Area3D"]
+script = ExtResource("1_882nc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_gsdtt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("BoxMesh_blonh")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

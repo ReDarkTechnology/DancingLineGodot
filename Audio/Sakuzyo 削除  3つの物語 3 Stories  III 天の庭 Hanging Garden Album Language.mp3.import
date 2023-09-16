@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://xfvsjccwmwts"
+path="res://.godot/imported/Sakuzyo 削除  3つの物語 3 Stories  III 天の庭 Hanging Garden Album Language.mp3-eb87ab0453aaa375437149a1fb868c2e.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sakuzyo 削除  3つの物語 3 Stories  III 天の庭 Hanging Garden Album Language.mp3"
+dest_files=["res://.godot/imported/Sakuzyo 削除  3つの物語 3 Stories  III 天の庭 Hanging Garden Album Language.mp3-eb87ab0453aaa375437149a1fb868c2e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

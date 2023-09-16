@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2lhkegb3mhh5"]
+
+[ext_resource type="Material" uid="uid://d0aqn48xoannh" path="res://Materials/PlayerMaterial.tres" id="1_wpgyj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iuftn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ime8v"]
+material = ExtResource("1_wpgyj")
+
+[node name="Tail" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_iuftn")
+disabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ime8v")
