@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://vbv3l2sbvomu"
+path="res://.godot/imported/M2U - Marigold (feat. Guriri).mp3-a850c3a37d8f193458030726a5b3d6f8.mp3str"
+
+[deps]
+
+source_file="res://Audio/M2U - Marigold (feat. Guriri).mp3"
+dest_files=["res://.godot/imported/M2U - Marigold (feat. Guriri).mp3-a850c3a37d8f193458030726a5b3d6f8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
